@@ -1,0 +1,12 @@
+# Code owners. Replace @muhammed-ai with teams as the project grows.
+
+*                     @muhammed-ai
+
+/terraform/           @muhammed-ai
+/kubernetes/          @muhammed-ai
+/argocd/              @muhammed-ai
+/security/            @muhammed-ai
+/agents/              @muhammed-ai
+/platform/backstage/  @muhammed-ai
+/.github/             @muhammed-ai
+/docs/                @muhammed-ai

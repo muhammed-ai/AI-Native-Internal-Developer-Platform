@@ -1,0 +1,30 @@
+name: Repo validation
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  structure-and-tests:
+    name: Structure + tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate repository structure
+        run: python scripts/validate_structure.py
+
+      - name: Install test deps
+        run: pip install pytest
+
+      - name: Run tests
+        run: pytest tests/ -q

@@ -1,0 +1,21 @@
+# PLANNED example — not applied. Syncs the Kubernetes base/overlay via GitOps.
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: platform-base
+  namespace: argocd
+spec:
+  project: platform
+  source:
+    repoURL: https://github.com/muhammed-ai/AI-Native-Internal-Developer-Platform.git
+    targetRevision: main
+    path: kubernetes/overlays/local
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: platform
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

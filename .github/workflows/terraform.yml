@@ -1,0 +1,41 @@
+name: Terraform validation
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "terraform/**"
+      - ".github/workflows/terraform.yml"
+
+permissions:
+  contents: read
+
+# SKELETON (Phase 2). Validates formatting and, once stacks contain real config,
+# runs init/validate with the backend disabled. No cloud credentials, no apply.
+jobs:
+  fmt-validate:
+    name: fmt + validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.9.5"
+
+      - name: Terraform fmt (check)
+        run: terraform fmt -check -recursive terraform/
+
+      # Enabled per-stack as real configuration lands.
+      # - name: Validate azure stack
+      #   run: |
+      #     terraform -chdir=terraform/azure init -backend=false
+      #     terraform -chdir=terraform/azure validate
+
+  iac-security:
+    name: IaC security scan (Checkov)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Checkov (skeleton — soft-fail until stacks exist)
+        run: echo "PLACEHOLDER: run 'checkov -d terraform/' once stacks contain resources."

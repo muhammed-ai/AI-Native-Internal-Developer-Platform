@@ -1,0 +1,32 @@
+name: Container build + scan + SBOM + sign
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "services/**"
+      - ".github/workflows/container.yml"
+
+permissions:
+  contents: read
+
+# SKELETON (Phase 5). The intended supply-chain sequence for a service image.
+# Each step is a placeholder until the phase lands. No registry push here.
+jobs:
+  build-scan-sbom-sign:
+    name: build → scan → SBOM → sign
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build image
+        run: echo "PLACEHOLDER: docker build services/sample-api"
+
+      - name: Scan image (Trivy)
+        run: echo "PLACEHOLDER: trivy image --exit-code 1 --severity HIGH,CRITICAL <image>"
+
+      - name: Generate SBOM (Syft)
+        run: echo "PLACEHOLDER: syft <image> -o cyclonedx-json > sbom.cdx.json"
+
+      - name: Sign image (Cosign, keyless)
+        run: echo "PLACEHOLDER: cosign sign --yes <image> (OIDC, no keys)"

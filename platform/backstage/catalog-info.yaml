@@ -1,0 +1,18 @@
+# PLANNED example Backstage catalog entry. Illustrates how this repo would register
+# in the software catalog once Backstage is scaffolded (Phase 7).
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: ai-native-idp
+  description: AI-Native Internal Developer Platform
+  annotations:
+    github.com/project-slug: muhammed-ai/AI-Native-Internal-Developer-Platform
+  tags:
+    - platform
+    - idp
+    - kubernetes
+    - gitops
+spec:
+  type: platform
+  lifecycle: experimental
+  owner: platform-team

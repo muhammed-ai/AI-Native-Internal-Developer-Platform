@@ -1,0 +1,19 @@
+# YAML lint config. Relaxed enough for Kubernetes/Argo CD/GitHub Actions manifests.
+extends: default
+
+rules:
+  line-length:
+    max: 160
+    level: warning
+  document-start: disable
+  truthy:
+    allowed-values: ["true", "false", "on", "off"]
+  comments:
+    min-spaces-from-content: 1
+  indentation:
+    spaces: 2
+    indent-sequences: consistent
+
+ignore: |
+  node_modules/
+  .terraform/

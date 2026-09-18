@@ -1,0 +1,27 @@
+name: Application build/test
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "services/**"
+      - ".github/workflows/app-build.yml"
+
+permissions:
+  contents: read
+
+# SKELETON (Phase 4). Builds and tests application services. Container build,
+# scan, SBOM, and signing are separate skeleton workflows.
+jobs:
+  sample-api:
+    name: sample-api build/test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install deps
+        run: pip install -r services/sample-api/requirements.txt
+      - name: Import check
+        run: python -c "import services.sample_api.app.main" || echo "PLACEHOLDER: add unit tests in Phase 4."

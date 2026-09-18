@@ -1,0 +1,34 @@
+name: Security checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: "0 6 * * 1" # weekly
+
+permissions:
+  contents: read
+  security-events: write
+
+# SKELETON (Phase 5). SAST + secret detection. CodeQL is added once application
+# code is substantial enough to analyze.
+jobs:
+  secret-scan:
+    name: Secret detection
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Gitleaks (skeleton)
+        run: echo "PLACEHOLDER: run gitleaks detect --no-banner in Phase 5."
+
+  codeql:
+    name: CodeQL (placeholder)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: CodeQL note
+        run: echo "PLACEHOLDER: enable github/codeql-action once code volume warrants it."

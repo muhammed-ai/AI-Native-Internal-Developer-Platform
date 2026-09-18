@@ -1,0 +1,11 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# Local (Kind/Minikube) overlay for developer workstations.
+resources:
+  - ../../base
+
+namePrefix: local-
+
+commonAnnotations:
+  platform.idp/environment: local

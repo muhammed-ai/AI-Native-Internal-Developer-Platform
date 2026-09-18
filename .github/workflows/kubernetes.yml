@@ -1,0 +1,25 @@
+name: Kubernetes validation
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "kubernetes/**"
+      - ".github/workflows/kubernetes.yml"
+
+permissions:
+  contents: read
+
+# SKELETON (Phase 3). Renders Kustomize overlays and validates manifests.
+jobs:
+  kustomize-build:
+    name: Kustomize build + validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Render local overlay
+        run: kubectl kustomize kubernetes/overlays/local
+
+      - name: Validate manifests (kubeconform)
+        run: echo "PLACEHOLDER: pipe render into kubeconform -strict in Phase 3."

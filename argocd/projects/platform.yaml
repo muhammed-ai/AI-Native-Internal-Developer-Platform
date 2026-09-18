@@ -1,0 +1,19 @@
+# PLANNED example — not applied. Defines the platform trust boundary.
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: platform
+  namespace: argocd
+spec:
+  description: Platform-owned applications (trust boundary for GitOps delivery).
+  sourceRepos:
+    - https://github.com/muhammed-ai/AI-Native-Internal-Developer-Platform.git
+  destinations:
+    - server: https://kubernetes.default.svc
+      namespace: platform
+  clusterResourceWhitelist:
+    - group: ""
+      kind: Namespace
+  namespaceResourceWhitelist:
+    - group: "*"
+      kind: "*"
