@@ -7,7 +7,7 @@ Modular workflows, one per concern, so pipelines evolve independently
 | --- | --- | --- |
 | `repo-validate.yml` | Repo structure + Python tests | Active |
 | `lint.yml` | YAML + Python lint | Active |
-| `terraform.yml` | `terraform fmt`, validate, Checkov | Skeleton (Phase 2) |
+| `terraform.yml` | `terraform fmt`, validate, Checkov | Active (Phase 2) |
 | `kubernetes.yml` | Kustomize render + manifest validation | Skeleton (Phase 3) |
 | `app-build.yml` | Application build/test | Skeleton (Phase 4) |
 | `container.yml` | Image build → scan → SBOM → sign | Skeleton (Phase 5) |

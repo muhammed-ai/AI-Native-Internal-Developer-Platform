@@ -4,19 +4,19 @@ Reusable building blocks consumed by the per-cloud stacks. Each module is
 self-contained with `variables.tf`, `main.tf`, and `outputs.tf`, and documents
 its inputs/outputs.
 
-> Status: **PLANNED**. Module contracts are described here; implementations land
-> in later phases (Phase 2+).
+> Status: **IMPLEMENTED** for the Azure foundation (Phase 2). AWS/GCP consumers
+> land in later phases.
 
-## Intended modules
+## Modules
 
-| Module | Responsibility | Consumed by |
+| Module | Responsibility | Status |
 | --- | --- | --- |
-| `network` | VNet/VPC, subnets, private networking | all clouds |
-| `kubernetes-cluster` | Managed cluster (AKS/EKS/GKE) | all clouds |
-| `container-registry` | ACR / ECR / Artifact Registry | all clouds |
-| `secrets` | Key Vault / Secrets Manager / Secret Manager | all clouds |
-| `identity` | Managed identity / IAM roles / Workload Identity | all clouds |
-| `observability` | Metrics/log sinks and exporters | all clouds |
+| `network` | VNet + AKS subnet | IMPLEMENTED |
+| `identity` | User-assigned managed identity + OIDC federated credentials | IMPLEMENTED |
+| `container-registry` | Azure Container Registry (admin disabled, RBAC pull) | IMPLEMENTED |
+| `key-vault` | Key Vault with RBAC authorization + secure defaults | IMPLEMENTED |
+| `aks` | AKS cluster (workload identity, Azure RBAC, autoscaling, cost-aware) | IMPLEMENTED |
+| `observability` | Metrics/log sinks and exporters | PLANNED |
 
 ## Rules
 

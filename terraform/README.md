@@ -1,7 +1,8 @@
 # Terraform
 
-> Status: **PLANNED** foundation. This directory defines the intended layout and
-> conventions. No cloud resources are defined or applied yet.
+> Status: **Azure stack IMPLEMENTED** (Phase 2) — modules + `terraform/azure`
+> validate cleanly with `terraform validate`. **Not applied**; no cloud resources
+> exist. AWS and GCP stacks remain **PLANNED** (Phase 12).
 
 ## Layout
 

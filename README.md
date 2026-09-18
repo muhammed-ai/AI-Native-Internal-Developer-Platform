@@ -27,6 +27,9 @@ signals, not a chatbot.
   workflows for Terraform, Kubernetes, container supply chain, and security.
 - A minimal reference service (`services/sample-api`) — **EXPERIMENTAL**.
 - Valid Kustomize base/overlay and example Argo CD manifests — **PLANNED** to deploy.
+- **Azure Terraform foundation** — reusable modules (network, identity, ACR,
+  Key Vault, AKS) composed into a validated `terraform/azure` stack. Passes
+  `terraform validate`; **not applied** (no cloud resources exist).
 
 ## Why it exists
 
@@ -127,7 +130,7 @@ The original platform brief is preserved verbatim at
 | Phase | Focus | Status |
 | --- | --- | --- |
 | 1 | Repository + architecture + local development | IMPLEMENTED |
-| 2 | Terraform + cloud foundation | PLANNED |
+| 2 | Terraform + Azure cloud foundation | IMPLEMENTED (validated, not applied) |
 | 3 | Kubernetes platform | PLANNED |
 | 4 | GitHub Actions CI/CD | PLANNED |
 | 5 | DevSecOps / supply-chain security | PLANNED |

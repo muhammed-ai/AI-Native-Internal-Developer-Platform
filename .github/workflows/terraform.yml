@@ -1,6 +1,11 @@
 name: Terraform validation
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - "terraform/**"
+      - ".github/workflows/terraform.yml"
   pull_request:
     branches: [main]
     paths:
@@ -10,8 +15,8 @@ on:
 permissions:
   contents: read
 
-# SKELETON (Phase 2). Validates formatting and, once stacks contain real config,
-# runs init/validate with the backend disabled. No cloud credentials, no apply.
+# ACTIVE (Phase 2). Validates formatting and runs init/validate on the Azure stack
+# with the backend disabled. No cloud credentials are used and no apply is run.
 jobs:
   fmt-validate:
     name: fmt + validate
@@ -26,16 +31,20 @@ jobs:
       - name: Terraform fmt (check)
         run: terraform fmt -check -recursive terraform/
 
-      # Enabled per-stack as real configuration lands.
-      # - name: Validate azure stack
-      #   run: |
-      #     terraform -chdir=terraform/azure init -backend=false
-      #     terraform -chdir=terraform/azure validate
+      - name: Validate azure stack
+        run: |
+          terraform -chdir=terraform/azure init -backend=false -input=false
+          terraform -chdir=terraform/azure validate -no-color
 
   iac-security:
     name: IaC security scan (Checkov)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Checkov (skeleton — soft-fail until stacks exist)
-        run: echo "PLACEHOLDER: run 'checkov -d terraform/' once stacks contain resources."
+      - name: Run Checkov on terraform/
+        uses: bridgecrewio/checkov-action@v12
+        with:
+          directory: terraform/
+          framework: terraform
+          quiet: true
+          soft_fail: true # report findings without blocking; tighten in a later phase
