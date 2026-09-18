@@ -1,9 +1,9 @@
 You are the lead platform engineer responsible for setting up a new production-quality GitHub repository called:
 
-agentic-ai-orchestration
+AI-Native-Internal-Developer-Platform
 
 Repository:
-github.com/muhammed-ai/agentic-ai-orchestration
+github.com/muhammed-ai/AI-Native-Internal-Developer-Platform
 
 This is a portfolio-grade engineering project designed to demonstrate Senior DevOps / Platform Engineering capabilities.
 
