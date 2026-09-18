@@ -1,5 +1,5 @@
 # Multi-stage, non-root, minimal image for the reference service.
-FROM python:3.12-slim AS base
+FROM python:3.14-slim AS base
 
 # Create a non-root user (aligns with the require-non-root policy).
 RUN useradd --create-home --uid 10001 appuser
